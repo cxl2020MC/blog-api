@@ -13,13 +13,15 @@ async def root():
 
 @router.get("/post")
 async def 获取文章内容(link:str):
-    data = await db.get_db().posts.find_one({"link": link, "_id": 0})
-    return utils.return_data(data)
+    async with DB() as db:
+        data = await db.posts.find_one({"link": link, "_id": 0})
+        return utils.return_data(data)
 
 @router.post("/post")
 async def 上传文章(data: models.Post):
-    await db.get_db().posts.insert_one(dict(data))
-    return utils.return_data(msg = "上传成功")
+    async with DB() as db:
+        await db.posts.insert_one(dict(data))
+        return utils.return_data(msg = "上传成功")
 
 @router.get("/postlist")
 async def 获取文章列表():
