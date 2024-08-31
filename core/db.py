@@ -21,7 +21,7 @@ def get_db():
 '''
 
 # 拿class写个用with自动销毁连接的
-class _DB:
+class DB:
   def __init__(self, db_uri: str = os.getenv("MONGODB_URI", "mongodb://localhost:27017")):
     self.db_uri = db_uri
   async def __aenter__(self):
