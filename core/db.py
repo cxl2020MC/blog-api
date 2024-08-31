@@ -29,7 +29,7 @@ class DB:
     self.db = self._client["blog_nuxt"]
     print("创建数据库连接")
 
-  async def __aexit__(self):
+  async def __aexit__(self, exc_type, exc, tb):
     await self._client.close()
     print("数据库连接已关闭")
   
