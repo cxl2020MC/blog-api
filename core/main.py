@@ -1,6 +1,6 @@
 from fastapi import APIRouter
 from . import utils
-from .db import get_db
+from .db import DB
 from . import models
 
 router = APIRouter()
@@ -23,7 +23,7 @@ async def 上传文章(data: models.Post):
 
 @router.get("/postlist")
 async def 获取文章列表():
-    async with get_db() as db:
+    async with DB() as db:
        data = await db.db.posts.find({}).to_list(length=100)
        data = utils.id转换(data)
        print(data)
