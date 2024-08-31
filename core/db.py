@@ -28,6 +28,7 @@ class DB:
     self._client = motor_asyncio.AsyncIOMotorClient(self.db_uri)
     self.db = self._client["blog_nuxt"]
     print("创建数据库连接")
+    return self
 
   async def __aexit__(self, exc_type, exc, tb):
     await self._client.close()
