@@ -31,7 +31,7 @@ class DB:
     return self
 
   async def __aexit__(self, exc_type, exc, tb):
-    await self._client.close()
+    self._client.close()
     print("数据库连接已关闭")
   
   
