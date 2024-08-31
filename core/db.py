@@ -26,7 +26,7 @@ class DB:
     self.db_uri = db_uri
   async def __aenter__(self):
     self._client = motor_asyncio.AsyncIOMotorClient(self.db_uri)
-    self.db = _client["blog_nuxt"]
+    self.db = self._client["blog_nuxt"]
     print("创建数据库连接")
 
   async def __aexit__(self):
