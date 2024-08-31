@@ -25,7 +25,7 @@ class DB:
   def __init__(self, db_uri: str = os.getenv("MONGODB_URI", "mongodb://localhost:27017")):
     self.db_uri = db_uri
   async def __aenter__(self):
-    self._client = motor_asyncio.AsyncIOMotorClient(db_uri)
+    self._client = motor_asyncio.AsyncIOMotorClient(self.db_uri)
     self.db = _client["blog_nuxt"]
     print("创建数据库连接")
 
