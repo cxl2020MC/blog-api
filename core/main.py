@@ -24,7 +24,7 @@ async def 上传文章(data: models.Post):
 @router.get("/postlist")
 async def 获取文章列表():
     async with DB() as db:
-       data = await db.db.posts.find({}).to_list(length=100)
+       data = await db.posts.find({}).to_list(length=100)
        data = utils.id转换(data)
        print(data)
        return utils.return_data(data)
