@@ -16,3 +16,4 @@ def get_db():
   db_url = os.getenv("MONGODB_URL", "mongodb://localhost:27017")
   _client = motor_asyncio.AsyncIOMotorClient(db_url)
   db = _client["blog_nuxt"]
+  return db
