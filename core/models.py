@@ -9,7 +9,8 @@ class User(BaseModel):
 class Post(BaseModel):
     _id: str | None = None
     title: str
-    abbrlink: str
+    link: str
+    cover: str
     author: str
     content: str
     tags: list[str]
