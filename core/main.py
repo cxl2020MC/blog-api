@@ -13,7 +13,7 @@ async def root():
 async def 获取文章列表():
     async with DB() as db:
        data = await db.posts.find({}, {"md_content": 0}).to_list(length=100)
-       data = utils.id转换(data)
+       data["_id"] = str(data.get("_id"))
        print(data)
        return utils.return_data(data)
 
