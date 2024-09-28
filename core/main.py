@@ -11,7 +11,7 @@ router = APIRouter()
 async def root():
     return utils.return_data(msg = "博客api正常运行")
 
-@router.get("/post")
+@router.get("/post/[link]")
 async def 获取文章内容(link:str):
     async with DB() as db:
         data = await db.posts.find_one({"link": link, "_id": 0})
