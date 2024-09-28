@@ -13,7 +13,8 @@ async def root():
 async def 获取文章列表():
     async with DB() as db:
        data = await db.posts.find({}, {"md_content": 0}).to_list(length=100)
-       data["_id"] = str(data.get("_id"))
+       
+       data = utils.id转换(data)
        print(data)
        return utils.return_data(data)
 
@@ -22,7 +23,7 @@ async def 获取文章列表():
 async def 获取文章内容(link:str):
     async with DB() as db:
         data = await db.posts.find_one({"link": link})
-        data = utils.id转换(data)
+        data["_id"] = str(data.get("_id"))
         return utils.return_data(data)
 
 @router.post("/posts")
