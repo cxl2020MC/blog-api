@@ -17,12 +17,6 @@ async def 获取文章列表():
        print(data)
        return utils.return_data(data)
 
-@router.get("/posts")
-async def 获取文章列表():
-        async with  {"md_content"      data = await db.posts.find({}, {"md_content": 0})a)
-           ngth=100)
-       data = utils.id转换(data)
-       print(data)
 
 @router.get("/posts/{link}")
 async def 获取文章内容(link:str):
