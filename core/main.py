@@ -11,7 +11,7 @@ router = APIRouter()
 async def root():
     return utils.return_data(msg = "博客api正常运行")
 
-@router.get("/post/[link]")
+@router.get("/post/{link}")
 async def 获取文章内容(link:str):
     async with DB() as db:
         data = await db.posts.find_one({"link": link, "_id": 0})
@@ -26,7 +26,7 @@ async def 上传文章(data: models.Post):
 @router.get("/postlist")
 async def 获取文章列表():
     async with DB() as db:
-       data = await db.posts.find({}, {"MD_content": 0}).to_list(length=100)
+       data = await db.posts.find({}, {"md_content": 0}).to_list(length=100)
        data = utils.id转换(data)
        print(data)
        return utils.return_data(data)
