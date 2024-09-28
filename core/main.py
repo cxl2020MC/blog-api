@@ -21,7 +21,8 @@ async def 获取文章列表():
 @router.get("/posts/{link}")
 async def 获取文章内容(link:str):
     async with DB() as db:
-        data = await db.posts.find_one({"link": link, "_id": 0})
+        data = await db.posts.find_one({"link": link})
+        data = utils.id转换(data)
         return utils.return_data(data)
 
 @router.post("/posts")
