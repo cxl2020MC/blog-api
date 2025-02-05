@@ -5,3 +5,4 @@ motor
 python-dotenv
 pyjwt[crypto]
 passlib[bcrypt]
+python-multipart
