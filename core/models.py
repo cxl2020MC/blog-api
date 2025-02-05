@@ -1,5 +1,11 @@
 from pydantic import BaseModel
 
+
+class Response(BaseModel):
+    code: int = 200
+    msg: str = "Success"
+    data: dict = None
+
 class User(BaseModel):
     _id: str | None = None
     name: str
