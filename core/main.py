@@ -3,6 +3,7 @@ from fastapi.security import OAuth2PasswordRequestForm
 from . import utils
 from .db import DB
 from . import models
+from . import auth
 
 router = APIRouter()
 
@@ -39,4 +40,5 @@ async def 上传文章(data: models.Post):
 
 @router.post("/token")
 async def login(from_data: OAuth2PasswordRequestForm = Depends()):
-    return {}
+    token = auth.create_access_token(from_data.username, from_data.password)
+    return {"access_token": token}

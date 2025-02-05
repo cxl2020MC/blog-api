@@ -10,6 +10,7 @@ jwt_change = datetime.timedelta(days=30)
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
+
 def create_access_token(username: str, password: str) -> str:
     data = {"username": username, "password": password,
             "exp": datetime.detetime.now(datetime.UTC) + jwt_change}
@@ -22,5 +23,5 @@ def get_data_from_token(token: str = Depends(oauth2_scheme)):
         data = jwt.decode(token, jwt_secret, algorithms=["HS256"])
         return data
     except InvalidTokenError:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail="Token 无效，请重新登陆")
-
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED,
+                            detail="Token 无效，请重新登陆", headers={"WWW-Authenticate": "Bearer"})
