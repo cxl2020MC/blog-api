@@ -4,7 +4,7 @@ from pydantic import BaseModel
 class Response(BaseModel):
     code: int = 200
     msg: str = "Success"
-    data: dict = None
+    data: dict | None = None
 
 class User(BaseModel):
     _id: str | None = None
