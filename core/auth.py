@@ -3,7 +3,6 @@ import jwt
 import os
 
 jwt_secret = os.getenv("JWT_SECRET", "1145141919810")
-
 jwt_change = datetime.timedelta(days=30)
 
 
