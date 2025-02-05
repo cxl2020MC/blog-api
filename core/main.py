@@ -39,4 +39,4 @@ async def 上传文章(data: models.Post):
 
 @router.post("/token")
 async def login(from_data: OAuth2PasswordRequestForm = Depends()):
-    pass
+    return {}
