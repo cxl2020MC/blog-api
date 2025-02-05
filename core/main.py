@@ -1,4 +1,5 @@
-from fastapi import APIRouter
+from fastapi import APIRouter, Depends
+from fastapi.security import OAuth2PasswordRequestForm
 from . import utils
 from .db import DB
 from . import models
@@ -34,3 +35,8 @@ async def 上传文章(data: models.Post):
     async with DB() as db:
         await db.posts.insert_one(dict(data))
         return utils.return_data(msg="上传成功")
+
+
+@router.post("/token")
+async def login(from_data: OAuth2PasswordRequestForm = Depends()):
+    pass
