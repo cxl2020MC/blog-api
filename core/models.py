@@ -24,3 +24,8 @@ class Post(BaseModel):
     updated_at: float
     draft: bool = False
     word_count: int
+
+
+class Token(BaseModel):
+    access_token: str
+    token_type: str

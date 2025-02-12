@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from fastapi.security import OAuth2PasswordRequestForm
 from . import utils
 from .db import DB
@@ -38,7 +38,9 @@ async def 上传文章(data: models.Post):
         return utils.return_data(msg="上传成功")
 
 
-@router.post("/token")
+@router.post("/token", response_model=models.Token)
 async def login(from_data: OAuth2PasswordRequestForm = Depends()):
+    if not auth.verify_user(from_data.username, from_data.password):
+        raise HTTPException(status_code=400, detail="用户名或密码错误")
     token = auth.create_access_token(from_data.username, from_data.password)
-    return {"access_token": token}
+    return models.Token(access_token=token, token_type="bearer")
