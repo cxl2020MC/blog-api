@@ -32,7 +32,7 @@ async def 获取文章内容(link: str):
 
 
 @router.post("/posts", response_model=models.Response)
-async def 上传文章(data: models.Post):
+async def 上传文章(data: models.Post, user=Depends(auth.get_data_from_token)):
     async with DB() as db:
         await db.posts.insert_one(dict(data))
         return utils.return_data(msg="上传成功")
