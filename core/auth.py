@@ -22,7 +22,7 @@ oauth2_scheme = OAuth2PasswordBearer(tokenUrl="token")
 
 def create_access_token(username: str, password: str) -> str:
     data = {"username": username, "password": password,
-            "exp": datetime.detetime.now(datetime.UTC) + jwt_change}
+            "exp": datetime.datetime.now(datetime.UTC) + jwt_change}
     token = jwt.encode(data, jwt_secret, algorithm="HS256")
     return token
 

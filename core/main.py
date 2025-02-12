@@ -37,6 +37,9 @@ async def 上传文章(data: models.Post, user=Depends(auth.get_data_from_token)
         await db.posts.insert_one(dict(data))
         return utils.return_data(msg="上传成功")
 
+@router.post("/user", response_model=models.Response)
+async def 上传文章(data: models.Post, user=Depends(auth.get_data_from_token)):
+    return utils.return_data(user)
 
 @router.post("/token", response_model=models.Token)
 async def login(from_data: OAuth2PasswordRequestForm = Depends()):
