@@ -48,7 +48,7 @@ async def login(from_data: OAuth2PasswordRequestForm = Depends()):
     token = auth.create_access_token(from_data.username, from_data.password)
     return models.Token(access_token=token, token_type="bearer")
 
-@router.get("/ip")
-async def get_ip():
+# @router.get("/ip")
+# async def get_ip():
 
-    return utils.return_data(msg="ip地址获取成功")
+#     return utils.return_data(msg="ip地址获取成功")
