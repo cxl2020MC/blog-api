@@ -10,7 +10,7 @@ router = APIRouter()
 
 @router.get("/", response_model=models.Response)
 async def root():
-    return utils.return_data(msg="博客api正常运行")
+    return models.Response(msg="博客api正常运行")
 
 
 @router.get("/posts")
@@ -18,7 +18,7 @@ async def 获取文章列表():
     async with DB() as db:
         data = await db.posts.find({}, {"md_content": 0}).to_list(length=100)
 
-        data = utils.id转换(data)
+        data = utils.id_replace(data)
         print(data)
         return utils.return_data(data)
 
@@ -38,7 +38,7 @@ async def 上传文章(data: models.Post, user=Depends(auth.get_data_from_token)
         return utils.return_data(msg="上传成功")
 
 @router.post("/user", response_model=models.Response)
-async def 上传文章(data: models.Post, user=Depends(auth.get_data_from_token)):
+async def 当前用户(data: models.Post, user=Depends(auth.get_data_from_token)):
     return utils.return_data(user)
 
 @router.post("/token", response_model=models.Token)

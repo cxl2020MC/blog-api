@@ -1,16 +1,15 @@
 from pydantic import BaseModel
 
 
-class Response(BaseModel):
+class Response[T](BaseModel):
     code: int = 200
     msg: str = "Success"
-    data: dict | None = None
+    data: T | None = None
+
 
 class User(BaseModel):
-    _id: str | None = None
-    name: str
-    email: str
-    hashed_password: str
+    username: str
+    password: str
 
 class Post(BaseModel):
     _id: str | None = None
@@ -25,6 +24,10 @@ class Post(BaseModel):
     draft: bool = False
     word_count: int
 
+
+
+class PostResponse(Response[list[Post]]):
+    pass
 
 class Token(BaseModel):
     access_token: str
