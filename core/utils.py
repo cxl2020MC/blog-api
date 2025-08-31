@@ -16,5 +16,5 @@ def id_replace(data: dict) -> dict:
 
 def id_list_replace(data: list) -> list:
     for i in range(len(data)):
-        id_replace(data[i])
+        data[i] = id_replace(data[i])
     return data
