@@ -1,6 +1,6 @@
 fastapi
 uvicorn[standard]
-httpx[http2]
+aiohttp
 motor
 python-dotenv
 pyjwt[crypto]

@@ -38,7 +38,7 @@ async def 上传文章(data: models.Post, user=Depends(auth.get_data_from_token)
         return utils.return_data(msg="上传成功")
 
 @router.post("/user", response_model=models.Response)
-async def 当前用户(data: models.Post, user=Depends(auth.get_data_from_token)):
+async def 获取用户信息(data: models.Post, user=Depends(auth.get_data_from_token)):
     return utils.return_data(user)
 
 @router.post("/token", response_model=models.Token)
@@ -47,3 +47,8 @@ async def login(from_data: OAuth2PasswordRequestForm = Depends()):
         raise HTTPException(status_code=400, detail="用户名或密码错误")
     token = auth.create_access_token(from_data.username, from_data.password)
     return models.Token(access_token=token, token_type="bearer")
+
+# @router.get("/ip")
+# async def get_ip():
+
+#     return utils.return_data(msg="ip地址获取成功")
