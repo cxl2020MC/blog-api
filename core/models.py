@@ -1,4 +1,5 @@
-from pydantic import BaseModel
+from pydantic import BaseModel, Field
+
 
 
 class Response[T](BaseModel):
@@ -12,7 +13,7 @@ class User(BaseModel):
     password: str
 
 class Post(BaseModel):
-    _id: str | None = None
+    id: str | None = Field(alias="_id")
     title: str
     link: str
     cover: str
