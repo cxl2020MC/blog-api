@@ -14,13 +14,13 @@ async def root():
 
 
 @router.get("/posts")
-async def 获取文章列表():
+async def 获取文章列表() -> models.PostResponse:
     async with DB() as db:
         data = await db.posts.find({}, {"md_content": 0}).to_list(length=100)
 
         data = utils.id_replace(data)
         print(data)
-        return utils.return_data(data)
+        return models.PostResponse(data=data)
 
 
 @router.get("/posts/{link}", response_model=models.Response)
