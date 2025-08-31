@@ -27,6 +27,8 @@ async def 获取文章列表() -> models.PostResponse:
 async def 获取文章内容(link: str):
     async with DB() as db:
         data = await db.posts.find_one({"link": link})
+        if data is None:
+            return models.Response(code=404, msg="文章不存在")
         data = utils.id_replace(data)
         return utils.return_data(data)
 
