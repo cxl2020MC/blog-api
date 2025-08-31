@@ -17,7 +17,7 @@ class Post(BaseModel):
     link: str
     cover: str
     author: str
-    content: str
+    md_content: str | None = None
     tags: list[str]
     created_at: float
     updated_at: float
