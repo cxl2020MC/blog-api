@@ -18,6 +18,7 @@ class Post(BaseModel):
     cover: str
     author: str
     md_content: str | None = None
+    description: str | None = None
     tags: list[str]
     created_at: float
     updated_at: float
