@@ -18,7 +18,7 @@ async def 获取文章列表() -> models.PostResponse:
     async with DB() as db:
         data = await db.posts.find({}, {"md_content": 0}).to_list(length=100)
 
-        data = utils.id_replace(data)
+        data = utils.id_list_replace(data)
         print(data)
         return models.PostResponse(data=data)
 
