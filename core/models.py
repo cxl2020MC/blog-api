@@ -13,7 +13,7 @@ class User(BaseModel):
     password: str
 
 class Post(BaseModel):
-    id: str | None = Field(alias="_id")
+    id: str | None = Field(default=None, alias="_id")
     title: str
     link: str
     cover: str
